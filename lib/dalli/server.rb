@@ -80,7 +80,7 @@ module Dalli
       rescue => ex
         Dalli.logger.error "Unexpected exception during Dalli request: #{ex.class.name}: #{ex.message}"
         Dalli.logger.error ex.backtrace.join("\n\t")
-        down!
+        # down!
       end
     end
 
