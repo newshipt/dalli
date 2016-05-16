@@ -508,7 +508,11 @@ module Dalli
       elsif data
         flags = data[0...extras].unpack('N')[0]
         value = data[extras..-1]
-        unpack ? deserialize(value, flags) : value
+        begin
+          unpack ? deserialize(value, flags) : value
+        rescue => e
+          NOT_FOUND
+        end
       else
         true
       end
