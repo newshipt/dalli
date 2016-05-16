@@ -510,7 +510,8 @@ module Dalli
         value = data[extras..-1]
         begin
           unpack ? deserialize(value, flags) : value
-        rescue => e
+        rescue => ex
+          Dalli.logger.error "Serialization error #{ex.message}"
           NOT_FOUND
         end
       else
